@@ -1,0 +1,137 @@
+include layout/header.pug 
+include layout/menu.pug
+
+.container.mt-5
+  h1.text-center Contáctanos
+  p.text-center.text-muted Estamos listos para atenderte ✨
+
+  .row.mt-4
+
+    // 🔹 INFORMACIÓN
+    .col-md-6
+
+      h5 📞 Llámanos cuando quieras
+      p 1-800-123-4567
+      p 458 109 6668
+
+      h5 📍 Dirección
+      p Nos ubicamos cerca de la UTNA en Rincón de Romos, Aguascalientes
+
+      h5 🕒 Horario laboral
+      p Lunes a Sábado: 9:00 AM - 6:00 PM
+      p Domingo: Cerrado
+
+      h5 🌐 Redes sociales
+
+      a(href="https://facebook.com" target="_blank")
+        img(src="/img/face.png", style="width:30px; margin-right:10px;")
+
+      a(href="https://instagram.com" target="_blank")
+        img(src="/img/insta.png", style="width:30px; margin-right:10px;")
+
+      h5.mt-4 💬 WhatsApp directo
+      a.btn.btn-success(
+        href="https://wa.me/524651546879"
+        target="_blank"
+      ) Enviar mensaje directo
+
+    // 🔹 FORMULARIO
+    .col-md-6
+      h5 Envíanos un mensaje
+
+      form#formContacto
+
+        input#nombre.form-control.mb-2(type="text" placeholder="Tu nombre")
+        input#telefono.form-control.mb-2(type="text" placeholder="Número de teléfono")
+        input#correo.form-control.mb-2(type="email" placeholder="Correo electrónico")
+
+        select#motivo.form-control.mb-2
+          option(value="") Selecciona un motivo
+          option(value="Información de servicios") Información de servicios
+          option(value="Cotización") Cotización
+          option(value="Queja o sugerencia") Queja o sugerencia
+
+        textarea#mensaje.form-control(placeholder="Escribe tu mensaje..." rows="5")
+
+        button.btn.btn-success.mt-3(type="submit") Enviar por WhatsApp
+
+  .mt-5.text-center
+    h4 ¿Tienes alguna pregunta?
+    p.text-muted Estamos para brindarte el mejor servicio
+
+// 🔥 SCRIPT WHATSAPP
+script.
+  document.getElementById("formContacto").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const nombre = document.getElementById("nombre").value.trim();
+    const telefono = document.getElementById("telefono").value.trim();
+    const correo = document.getElementById("correo").value.trim();
+    const motivo = document.getElementById("motivo").value;
+    const mensaje = document.getElementById("mensaje").value.trim();
+
+    if(nombre === "" || telefono === "" || correo === "" || motivo === "" || mensaje === ""){
+      alert("Completa todos los campos");
+      return;
+    }
+
+    const numero = "524651546879";
+
+    const texto = `Hola, soy ${nombre}%0A📞 Tel: ${telefono}%0A📧 Correo: ${correo}%0A📌 Motivo: ${motivo}%0A💬 Mensaje: ${mensaje}`;
+
+    const url = `https://wa.me/${numero}?text=${texto}`;
+
+    window.open(url, "_blank");
+  });
+
+// FOOTER
+footer.mt-5(style="background:#111; color:white; padding:30px;")
+  .container
+    .row
+
+      // SOBRE NOSOTROS
+      .col-md-3
+        h5 Sobre nosotros
+        p Desde su apertura en 1998, UTNACAR WASH ha brindado servicio a clientes que buscan un lavado de autos de alta calidad a un precio accesible.
+
+      // NUESTROS SERVICIOS
+      .col-md-3
+        h5 Nuestros servicios
+        ul
+          li Lavado exterior exprés
+          li Limpieza interior
+          li Lavado completo
+          li Detallado exprés
+          li Encerado protector
+          li Mantenimiento preventivo
+
+      // ENLACES ÚTILES ✅ (CORREGIDO)
+      .col-md-3
+        h5 Enlaces útiles
+        ul.list-unstyled
+          li
+            a.text-white.text-decoration-none(href="/") Inicio
+          li
+            a.text-white.text-decoration-none(href="/servicios") Servicios y precios
+          li
+            a.text-white.text-decoration-none(href="/ubicacion") Ubicación
+          li
+            a.text-white.text-decoration-none(href="/contacto") Contáctanos
+
+      // INFORMACIÓN DE CONTACTO
+      .col-md-3
+        h5 Información de contacto
+        p Llámanos ahora:
+        p 458 109 6668
+        p Nos ubicamos cerca de la UTNA en Rincón de Romos, Aguascalientes
+        p Lunes a Sábado: 9:00 AM - 6:00 PM
+        p Domingo: Cerrado
+
+  // PARTE INFERIOR
+  .text-center.mt-3
+    p ©2026 UTNACAR WASH. Todos los derechos reservados.
+    a.text-white(href="#") Mapa del sitio
+    |  | 
+    a.text-white(href="#") Términos y condiciones
+    |  | 
+    a.text-white(href="#") Política de privacidad
